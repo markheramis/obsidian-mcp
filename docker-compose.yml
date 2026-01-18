@@ -1,0 +1,14 @@
+services:
+  obsidian-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: obsidian-mcp
+    environment:
+      - OBSIDIAN_VAULT_PATH=${OBSIDIAN_VAULT_PATH:-./vault}
+      - OBSIDIAN_API_TOKEN=${OBSIDIAN_API_TOKEN:-}
+      - OBSIDIAN_API_PORT=${OBSIDIAN_API_PORT:-27123}
+    volumes:
+      - ${OBSIDIAN_VAULT_PATH:-./vault}:${OBSIDIAN_VAULT_PATH:-./vault}
+    network_mode: host
+    restart: unless-stopped
