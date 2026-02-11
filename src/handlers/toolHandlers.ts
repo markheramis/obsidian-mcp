@@ -243,7 +243,7 @@ const tools = {
         },
         {
             name: 'search_vault_stream',
-            description: 'Streaming search that yields results incrementally. Useful for large vaults where you want to see results as they are found. Returns results in batches.',
+            description: 'Streaming search that yields results incrementally. Useful for large vaults where you want to see results as they are found. Streaming is used internally; the MCP tool returns a single response with all results (or up to limit).',
             inputSchema: {
                 type: 'object',
                 properties: {
