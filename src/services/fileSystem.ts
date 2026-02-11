@@ -886,4 +886,36 @@ export class FileSystemService {
         const parsed = this.frontmatterParser.parse(content);
         return parsed.data;
     }
+
+    /**
+     * Get frontmatter and tags in a single read (avoids double read used by getNoteFrontmatter + getNoteTags).
+     */
+    async getNoteMetadata(notePath: string): Promise<{ frontmatter: Record<string, unknown>; tags: string[] }> {
+        await this.readNote(notePath);
+        const fullPath = path.join(config.vaultPath, notePath);
+        const stats = await fs.stat(fullPath);
+        const mtime = stats.mtimeMs;
+        const metadata = this.contentCache.getMetadata(notePath, mtime);
+        if (metadata) {
+            return {
+                frontmatter: metadata.frontmatter?.data ?? {},
+                tags: metadata.allTags,
+            };
+        }
+        const entry = this.contentCache.getEntry(notePath, mtime);
+        if (entry) {
+            const frontmatterTags = entry.parsedFrontmatter?.tags ?? [];
+            const inlineTags = entry.inlineTags ?? [];
+            return {
+                frontmatter: entry.parsedFrontmatter?.data ?? {},
+                tags: [...new Set([...frontmatterTags, ...inlineTags])],
+            };
+        }
+        const content = await fs.readFile(fullPath, 'utf-8');
+        const parsed = this.frontmatterParser.parse(content);
+        return {
+            frontmatter: parsed.data,
+            tags: this.frontmatterParser.getAllTags(content),
+        };
+    }
 }

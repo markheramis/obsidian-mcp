@@ -669,12 +669,9 @@ export class ToolHandlers {
         if (!args?.path) {
             throw new Error('Path is required');
         }
-        
-        const [frontmatter, tags] = await Promise.all([
-            this.fileSystemService.getNoteFrontmatter(args.path),
-            this.fileSystemService.getNoteTags(args.path),
-        ]);
-        
+
+        const { frontmatter, tags } = await this.fileSystemService.getNoteMetadata(args.path);
+
         return {
             content: [
                 {
