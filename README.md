@@ -121,9 +121,9 @@ See [Features Reference](docs/features/README.md) for detailed architecture docu
 | Variable                           | Default             | Description                          |
 | ---------------------------------- | ------------------- | ------------------------------------ |
 | `OBSIDIAN_VAULT_PATH`              | Required            | Path to your Obsidian vault          |
-| `OBSIDIAN_ENABLE_PERSISTENT_CACHE` | `false`             | Enable LMDB persistence              |
-| `OBSIDIAN_ENABLE_INVERTED_INDEX`   | `false`             | Enable fast text search index        |
-| `OBSIDIAN_ENABLE_PATH_TRIE`        | `false`             | Enable fast glob matching            |
+| `OBSIDIAN_ENABLE_PERSISTENT_CACHE` | `true`              | Enable LMDB persistence              |
+| `OBSIDIAN_ENABLE_INVERTED_INDEX`   | `true`              | Enable fast text search index        |
+| `OBSIDIAN_ENABLE_PATH_TRIE`        | `true`              | Enable fast glob matching            |
 | `OBSIDIAN_ENABLE_CACHE_WARMUP`     | `false`             | Pre-load cache on startup            |
 
 See [Configuration Reference](docs/configuration.md) for all 19 environment variables.

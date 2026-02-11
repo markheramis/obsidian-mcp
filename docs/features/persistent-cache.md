@@ -35,7 +35,7 @@ flowchart TB
 
 | Variable                           | Type      | Default             | Description             |
 | ---------------------------------- | --------- | ------------------- | ----------------------- |
-| `OBSIDIAN_ENABLE_PERSISTENT_CACHE` | `boolean` | `false`             | Enable LMDB persistence |
+| `OBSIDIAN_ENABLE_PERSISTENT_CACHE` | `boolean` | `true`              | Enable LMDB persistence |
 | `OBSIDIAN_CACHE_PATH`              | `string`  | `./.obsidian-cache` | Path to LMDB database   |
 
 ## Why LMDB?

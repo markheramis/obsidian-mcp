@@ -23,17 +23,17 @@ All configuration options for the Obsidian MCP Server.
 
 | Variable                           | Type      | Default              | Description                       |
 | ---------------------------------- | --------- | -------------------- | --------------------------------- |
-| `OBSIDIAN_ENABLE_PERSISTENT_CACHE` | `boolean` | `false`              | Enable LMDB-backed persistence    |
+| `OBSIDIAN_ENABLE_PERSISTENT_CACHE` | `boolean` | `true`               | Enable LMDB-backed persistence    |
 | `OBSIDIAN_CACHE_PATH`              | `string`  | `./.obsidian-cache`  | Path to LMDB database directory   |
 
 ### Search Optimization
 
 | Variable                            | Type      | Default | Description                          |
 | ----------------------------------- | --------- | ------- | ------------------------------------ |
-| `OBSIDIAN_ENABLE_INVERTED_INDEX`    | `boolean` | `false` | Enable inverted index for search     |
+| `OBSIDIAN_ENABLE_INVERTED_INDEX`    | `boolean` | `true`  | Enable inverted index for search     |
 | `OBSIDIAN_INDEX_MIN_WORD_LENGTH`    | `number`  | `2`     | Minimum word length to index         |
 | `OBSIDIAN_INDEX_MAX_WORDS_PER_FILE` | `number`  | `10000` | Maximum words to index per file      |
-| `OBSIDIAN_ENABLE_PATH_TRIE`         | `boolean` | `false` | Enable path trie for glob matching   |
+| `OBSIDIAN_ENABLE_PATH_TRIE`         | `boolean` | `true`  | Enable path trie for glob matching   |
 
 ### Compression
 

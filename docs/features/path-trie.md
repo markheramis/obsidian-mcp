@@ -26,7 +26,7 @@ flowchart TD
 
 | Variable                    | Type      | Default | Description          |
 | --------------------------- | --------- | ------- | -------------------- |
-| `OBSIDIAN_ENABLE_PATH_TRIE` | `boolean` | `false` | Enable the path trie |
+| `OBSIDIAN_ENABLE_PATH_TRIE` | `boolean` | `true`  | Enable the path trie |
 
 ## Operations
 

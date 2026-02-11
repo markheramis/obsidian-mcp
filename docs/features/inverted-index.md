@@ -30,7 +30,7 @@ flowchart LR
 
 | Variable                            | Type      | Default | Description                     |
 | ----------------------------------- | --------- | ------- | ------------------------------- |
-| `OBSIDIAN_ENABLE_INVERTED_INDEX`    | `boolean` | `false` | Enable the inverted index       |
+| `OBSIDIAN_ENABLE_INVERTED_INDEX`    | `boolean` | `true`  | Enable the inverted index       |
 | `OBSIDIAN_INDEX_MIN_WORD_LENGTH`    | `number`  | `2`     | Minimum word length to index    |
 | `OBSIDIAN_INDEX_MAX_WORDS_PER_FILE` | `number`  | `10000` | Maximum words to index per file |
 
