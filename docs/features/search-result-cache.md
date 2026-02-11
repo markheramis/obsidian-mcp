@@ -33,12 +33,12 @@ flowchart TD
 
 ## Configuration
 
-| Variable                          | Type      | Default | Description                            |
-| --------------------------------- | --------- | ------- | -------------------------------------- |
-| `OBSIDIAN_SEARCH_CACHE_SIZE`      | `number`  | `50`    | Maximum entries in cache               |
-| `OBSIDIAN_SEARCH_CACHE_TTL`       | `number`  | `30000` | TTL in milliseconds (30 seconds)       |
-| `OBSIDIAN_COMPRESS_LARGE_RESULTS` | `boolean` | `false` | Enable compression for large results   |
-| `OBSIDIAN_COMPRESSION_THRESHOLD`  | `number`  | `10240` | Size threshold for compression (bytes) |
+| Variable                          | Type      | Default  | Description                            |
+| --------------------------------- | --------- | -------- | -------------------------------------- |
+| `OBSIDIAN_SEARCH_CACHE_MAX_SIZE`  | `number`  | `50`     | Maximum entries in cache               |
+| `OBSIDIAN_SEARCH_CACHE_TTL`       | `number`  | `30000`  | TTL in milliseconds (30 seconds)       |
+| `OBSIDIAN_COMPRESS_LARGE_RESULTS` | `boolean` | `false`  | Enable compression for large results   |
+| `OBSIDIAN_COMPRESSION_THRESHOLD`  | `number`  | `100000` | Size threshold for compression (bytes) |
 
 ## Cache Key Generation
 

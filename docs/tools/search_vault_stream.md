@@ -4,7 +4,7 @@ Streaming search that yields results incrementally.
 
 ## Description
 
-Performs a search that returns results as they are found, rather than waiting for all results to be collected. This is particularly useful for large vaults where you want to see results immediately.
+Performs a search using an internal streaming implementation that yields results incrementally. The MCP tool returns a **single response** containing all results (or up to `limit`). Streaming is used internally for memory efficiency and early termination; the client receives one JSON array.
 
 At least one of `query`, `glob`, `regex`, `tags`, or `frontmatter` must be provided.
 

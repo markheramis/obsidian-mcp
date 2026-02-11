@@ -4,7 +4,7 @@ Get the frontmatter metadata and tags from a note.
 
 ## Description
 
-Extracts and returns the YAML frontmatter data and all tags (both from frontmatter and inline `#tags`) from a note without returning the full content.
+Extracts and returns the YAML frontmatter data and all tags (both from frontmatter and inline `#tags`) from a note without returning the full content. The implementation uses a single read and returns metadata from the content cache when the note is already cached.
 
 ## Parameters
 
@@ -78,10 +78,10 @@ This note is about #project-management and #roadmap planning.
 
 ```mermaid
 flowchart TD
-    A[get_note_metadata called] --> B[Read note content]
-    B --> C[Parse YAML frontmatter]
+    A[get_note_metadata called] --> B[Read note once or use cache]
+    B --> C[Get metadata from cache or parse]
     C --> D[Extract frontmatter tags]
-    D --> E[Extract inline #tags]
+    D --> E[Extract inline tags]
     E --> F[Merge and deduplicate]
     F --> G[Return metadata]
 ```
@@ -130,4 +130,4 @@ See [Frontmatter Parsing](../features/frontmatter-parsing.md) for details.
 ## Source
 
 - Handler: [`src/handlers/toolHandlers.ts`](../../src/handlers/toolHandlers.ts)
-- Service: [`src/services/FrontmatterParser.ts`](../../src/services/FrontmatterParser.ts)
+- Service: [`src/services/fileSystem.ts`](../../src/services/fileSystem.ts) (`getNoteMetadata`), [`src/services/FrontmatterParser.ts`](../../src/services/FrontmatterParser.ts)

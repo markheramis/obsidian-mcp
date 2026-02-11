@@ -61,7 +61,7 @@ High-performance caching system with multiple layers.
 | [File List Cache](file-list-cache.md)         | Cache folder listings       | 60s TTL         |
 | [Content Cache](content-cache.md)             | LRU cache for file contents | 100 entries     |
 | [Search Result Cache](search-result-cache.md) | Cache search query results  | 50 entries, 30s |
-| [Persistent Cache](persistent-cache.md)       | LMDB-backed persistence     | Disabled        |
+| [Persistent Cache](persistent-cache.md)       | LMDB-backed persistence     | Enabled         |
 | [Cache Warmup](cache-warmup.md)               | Pre-load cache on startup   | Disabled        |
 
 ### Search Optimization Features
@@ -70,8 +70,8 @@ Advanced search capabilities with performance optimizations.
 
 | Feature                                       | Purpose                           | Default  |
 | --------------------------------------------- | --------------------------------- | -------- |
-| [Inverted Index](inverted-index.md)           | Fast word-to-files lookup         | Disabled |
-| [Path Trie](path-trie.md)                     | Efficient glob pattern matching   | Disabled |
+| [Inverted Index](inverted-index.md)           | Fast word-to-files lookup         | Enabled  |
+| [Path Trie](path-trie.md)                     | Efficient glob pattern matching   | Enabled  |
 | [Frontmatter Parsing](frontmatter-parsing.md) | Tag and metadata extraction       | Enabled  |
 | [Scoring Algorithm](scoring-algorithm.md)     | TF-IDF-inspired relevance ranking | Enabled  |
 | [Search Compression](search-compression.md)   | Compress large search results     | Disabled |

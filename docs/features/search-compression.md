@@ -30,10 +30,10 @@ flowchart TD
 
 ## Configuration
 
-| Variable                          | Type      | Default | Description                    |
-| --------------------------------- | --------- | ------- | ------------------------------ |
-| `OBSIDIAN_COMPRESS_LARGE_RESULTS` | `boolean` | `false` | Enable compression             |
-| `OBSIDIAN_COMPRESSION_THRESHOLD`  | `number`  | `10240` | Size threshold in bytes (10KB) |
+| Variable                          | Type      | Default  | Description                     |
+| --------------------------------- | --------- | -------- | ------------------------------- |
+| `OBSIDIAN_COMPRESS_LARGE_RESULTS` | `boolean` | `false`  | Enable compression              |
+| `OBSIDIAN_COMPRESSION_THRESHOLD`  | `number`  | `100000` | Size threshold in bytes (100KB) |
 
 ## Compression Algorithm
 

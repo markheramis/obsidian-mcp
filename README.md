@@ -110,9 +110,9 @@ See [Features Reference](docs/features/README.md) for detailed architecture docu
 | [File List Cache](docs/features/file-list-cache.md)     | Cache folder listings                      | 60s TTL  |
 | [Content Cache](docs/features/content-cache.md)         | LRU cache for file contents                | 100 entries |
 | [Search Result Cache](docs/features/search-result-cache.md) | Cache search query results             | 50 entries |
-| [Persistent Cache](docs/features/persistent-cache.md)   | LMDB-backed persistence                    | Disabled |
-| [Inverted Index](docs/features/inverted-index.md)       | Fast word-to-files lookup                  | Disabled |
-| [Path Trie](docs/features/path-trie.md)                 | Efficient glob pattern matching            | Disabled |
+| [Persistent Cache](docs/features/persistent-cache.md)   | LMDB-backed persistence                    | Enabled  |
+| [Inverted Index](docs/features/inverted-index.md)       | Fast word-to-files lookup                  | Enabled  |
+| [Path Trie](docs/features/path-trie.md)                 | Efficient glob pattern matching            | Enabled  |
 | [File Watcher](docs/features/file-watcher.md)           | Real-time cache invalidation               | Enabled  |
 | [Cache Warmup](docs/features/cache-warmup.md)           | Pre-load cache on startup                  | Disabled |
 
@@ -126,7 +126,7 @@ See [Features Reference](docs/features/README.md) for detailed architecture docu
 | `OBSIDIAN_ENABLE_PATH_TRIE`        | `true`              | Enable fast glob matching            |
 | `OBSIDIAN_ENABLE_CACHE_WARMUP`     | `false`             | Pre-load cache on startup            |
 
-See [Configuration Reference](docs/configuration.md) for all 19 environment variables.
+See [Configuration Reference](docs/configuration.md) for all environment variables.
 
 ## Development
 

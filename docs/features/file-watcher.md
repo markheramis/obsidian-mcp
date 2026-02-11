@@ -24,9 +24,10 @@ flowchart TD
 
 ## Configuration
 
-| Variable                         | Type     | Default | Description                    |
-| -------------------------------- | -------- | ------- | ------------------------------ |
-| `OBSIDIAN_FILE_WATCHER_DEBOUNCE` | `number` | `100`   | Debounce delay in milliseconds |
+| Variable                         | Type      | Default | Description                                 |
+| -------------------------------- | --------- | ------- | ------------------------------------------- |
+| `OBSIDIAN_ENABLE_FILE_WATCHER`   | `boolean` | `true`  | Enable file watching for cache invalidation |
+| `OBSIDIAN_FILE_WATCHER_DEBOUNCE` | `number`  | `100`   | Debounce delay in milliseconds              |
 
 ## Event Types
 

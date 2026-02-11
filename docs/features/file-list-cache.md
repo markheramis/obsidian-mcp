@@ -24,9 +24,9 @@ flowchart TD
 
 ## Configuration
 
-| Variable             | Type     | Default | Description               |
-| -------------------- | -------- | ------- | ------------------------- |
-| `OBSIDIAN_CACHE_TTL` | `number` | `60000` | Cache TTL in milliseconds |
+| Variable                       | Type     | Default | Description               |
+| ------------------------------ | -------- | ------- | ------------------------- |
+| `OBSIDIAN_FILE_LIST_CACHE_TTL` | `number` | `60000` | Cache TTL in milliseconds |
 
 ## Cache Key Structure
 
@@ -42,7 +42,7 @@ The cache uses folder paths as keys:
 
 The cache is invalidated when:
 
-1. **TTL expires**: Entries older than `OBSIDIAN_CACHE_TTL` are refreshed
+1. **TTL expires**: Entries older than `OBSIDIAN_FILE_LIST_CACHE_TTL` are refreshed
 2. **File created**: Parent folder cache invalidated
 3. **File deleted**: Parent folder cache invalidated
 4. **File moved**: Source and destination folder caches invalidated

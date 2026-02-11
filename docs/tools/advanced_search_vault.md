@@ -125,6 +125,7 @@ JSON array of search results with scores and match details.
 
 ```mermaid
 flowchart TD
+    Z[End]
     A[advanced_search_vault] --> B{Any filter provided?}
     B -->|No| C[Error: Need at least one filter]
     B -->|Yes| D[Get candidate files]
@@ -146,6 +147,9 @@ flowchart TD
     N --> P[Sort & paginate]
     O --> P
     P --> Q[Return results]
+    C --> Z
+    Q --> Z
+    
 ```
 
 ### Filter Evaluation Order

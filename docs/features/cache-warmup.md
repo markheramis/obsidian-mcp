@@ -26,6 +26,7 @@ flowchart TD
     M -->|Yes| H
     M -->|No| N[Mark as warmed up]
     N --> O[Ready for requests]
+    
 ```
 
 ## Configuration
@@ -33,7 +34,7 @@ flowchart TD
 | Variable                       | Type      | Default | Description                     |
 | ------------------------------ | --------- | ------- | ------------------------------- |
 | `OBSIDIAN_ENABLE_CACHE_WARMUP` | `boolean` | `false` | Enable warmup on startup        |
-| `OBSIDIAN_WARMUP_FILE_COUNT`   | `number`  | `1000`  | Maximum files to pre-load       |
+| `OBSIDIAN_WARMUP_FILE_COUNT`   | `number`  | `50`    | Maximum files to pre-load       |
 
 ## Warmup Sequence
 
@@ -48,11 +49,11 @@ flowchart TD
 
 ## Startup Time Impact
 
-| Vault Size    | Without Warmup | With Warmup (1000 files) |
-| ------------- | -------------- | ------------------------ |
-| 100 files     | <100ms         | ~500ms                   |
-| 1,000 files   | <100ms         | ~2-3s                    |
-| 10,000 files  | <100ms         | ~5-10s (limited)         |
+| Vault Size    | Without Warmup | With Warmup (default 50 files) |
+| ------------- | -------------- | ------------------------------- |
+| 100 files     | <100ms         | ~500ms                          |
+| 1,000 files   | <100ms         | ~2-3s (limited to warmup count) |
+| 10,000 files  | <100ms         | ~5-10s (limited)                |
 
 ## First Request Performance
 

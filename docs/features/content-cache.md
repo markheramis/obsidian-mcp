@@ -28,9 +28,9 @@ flowchart TD
 
 ## Configuration
 
-| Variable                      | Type     | Default | Description                     |
-| ----------------------------- | -------- | ------- | ------------------------------- |
-| `OBSIDIAN_CONTENT_CACHE_SIZE` | `number` | `100`   | Maximum entries in memory cache |
+| Variable                         | Type     | Default | Description                     |
+| -------------------------------- | -------- | ------- | ------------------------------- |
+| `OBSIDIAN_CONTENT_CACHE_MAX_SIZE`| `number` | `100`   | Maximum entries in memory cache |
 
 ## Cached Data
 
@@ -47,7 +47,7 @@ Each cache entry contains:
 
 ## LRU Eviction
 
-When the cache reaches `maxSize`, the least recently used entry is evicted:
+When the cache reaches the configured max size, the least recently used entry is evicted:
 
 ```mermaid
 flowchart LR
