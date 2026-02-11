@@ -6,6 +6,19 @@ import {
     McpError,
 } from '@modelcontextprotocol/sdk/types.js';
 import { FileSystemService } from '../services/fileSystem.js';
+import type {
+    ListNotesArgs,
+    ReadNoteArgs,
+    CreateNoteArgs,
+    UpdateNoteArgs,
+    DeleteNoteArgs,
+    SearchVaultArgs,
+    AdvancedSearchVaultArgs,
+    ManageFolderArgs,
+    GetNoteMetadataArgs,
+    GetCacheStatsArgs,
+    SearchVaultStreamArgs,
+} from '../types/toolArgs.js';
 
 const tools = {
     tools: [
@@ -296,27 +309,27 @@ export class ToolHandlers {
             try {
                 switch (request.params.name) {
                     case 'list_notes':
-                        return await this.handleListNotes(request.params.arguments);
+                        return await this.handleListNotes(request.params.arguments as ListNotesArgs | undefined);
                     case 'read_note':
-                        return await this.handleReadNote(request.params.arguments);
+                        return await this.handleReadNote(request.params.arguments as ReadNoteArgs | undefined);
                     case 'create_note':
-                        return await this.handleCreateNote(request.params.arguments);
+                        return await this.handleCreateNote(request.params.arguments as CreateNoteArgs | undefined);
                     case 'update_note':
-                        return await this.handleUpdateNote(request.params.arguments);
+                        return await this.handleUpdateNote(request.params.arguments as UpdateNoteArgs | undefined);
                     case 'search_vault':
-                        return await this.handleSearchVault(request.params.arguments);
+                        return await this.handleSearchVault(request.params.arguments as SearchVaultArgs | undefined);
                     case 'advanced_search_vault':
-                        return await this.handleAdvancedSearchVault(request.params.arguments);
+                        return await this.handleAdvancedSearchVault(request.params.arguments as AdvancedSearchVaultArgs | undefined);
                     case 'delete_note':
-                        return await this.handleDeleteNote(request.params.arguments);
+                        return await this.handleDeleteNote(request.params.arguments as DeleteNoteArgs | undefined);
                     case 'manage_folder':
-                        return await this.handleManageFolder(request.params.arguments);
+                        return await this.handleManageFolder(request.params.arguments as ManageFolderArgs | undefined);
                     case 'get_note_metadata':
-                        return await this.handleGetNoteMetadata(request.params.arguments);
+                        return await this.handleGetNoteMetadata(request.params.arguments as GetNoteMetadataArgs | undefined);
                     case 'get_cache_stats':
-                        return await this.handleGetCacheStats(request.params.arguments);
+                        return await this.handleGetCacheStats(request.params.arguments as GetCacheStatsArgs | undefined);
                     case 'search_vault_stream':
-                        return await this.handleSearchVaultStream(request.params.arguments);
+                        return await this.handleSearchVaultStream(request.params.arguments as SearchVaultStreamArgs | undefined);
                     default:
                         throw new McpError(
                             ErrorCode.MethodNotFound,
@@ -343,7 +356,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the list of notes
      */
-    private async handleListNotes(args: any) {
+    private async handleListNotes(args: ListNotesArgs | undefined) {
         const folder = args?.folder || '';
         const files = await this.fileSystemService.listVaultFiles(folder);
         return {
@@ -361,7 +374,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the content of the note
      */
-    private async handleReadNote(args: any) {
+    private async handleReadNote(args: ReadNoteArgs | undefined) {
         if (!args?.path) {
             throw new Error('Path is required');
         }
@@ -381,7 +394,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the content of the note
      */
-    private async handleCreateNote(args: any) {
+    private async handleCreateNote(args: CreateNoteArgs | undefined) {
         if (!args?.path || !args?.content) {
             throw new Error('Path and content are required');
         }
@@ -401,7 +414,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the content of the note
      */
-    private async handleUpdateNote(args: any) {
+    private async handleUpdateNote(args: UpdateNoteArgs | undefined) {
         if (!args?.path || !args?.content) {
             throw new Error('Path and content are required');
         }
@@ -423,7 +436,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the search results
      */
-    private async handleSearchVault(args: any) {
+    private async handleSearchVault(args: SearchVaultArgs | undefined) {
         // Validate that query is required (maintains current API contract)
         if (!args?.query) {
             throw new Error('Search query is required');
@@ -444,7 +457,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the search results
      */
-    private async handleAdvancedSearchVault(args: any) {
+    private async handleAdvancedSearchVault(args: AdvancedSearchVaultArgs | undefined) {
         const query = args?.query;
         const glob = args?.glob;
         const regex = args?.regex;
@@ -539,7 +552,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the content of the note
      */
-    private async handleDeleteNote(args: any) {
+    private async handleDeleteNote(args: DeleteNoteArgs | undefined) {
         if (!args?.path) {
             throw new Error('Path is required');
         }
@@ -559,7 +572,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the content of the folder
      */
-    private async handleManageFolder(args: any) {
+    private async handleManageFolder(args: ManageFolderArgs | undefined) {
         if (!args?.operation || !args?.path) {
             throw new Error('Operation and path are required');
         }
@@ -585,7 +598,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the content of the folder
      */
-    private async handleCreateFolder(args: any) {
+    private async handleCreateFolder(args: ManageFolderArgs | undefined) {
         if (!args?.path) {
             throw new Error('Path is required');
         }
@@ -605,7 +618,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the content of the folder
      */
-    private async handleRenameFolder(args: any) {
+    private async handleRenameFolder(args: ManageFolderArgs | undefined) {
         if (!args?.path || !args?.newPath) {
             throw new Error('Path and new path are required');
         }
@@ -625,7 +638,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the content of the folder
      */
-    private async handleMoveFolder(args: any) {
+    private async handleMoveFolder(args: ManageFolderArgs | undefined) {
         if (!args?.path || !args?.newPath) {
             throw new Error('Path and new path are required');
         }
@@ -645,7 +658,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the content of the folder
      */
-    private async handleDeleteFolder(args: any) {
+    private async handleDeleteFolder(args: ManageFolderArgs | undefined) {
         if (!args?.path) {
             throw new Error('Path is required');
         }
@@ -665,7 +678,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the frontmatter and tags
      */
-    private async handleGetNoteMetadata(args: any) {
+    private async handleGetNoteMetadata(args: GetNoteMetadataArgs | undefined) {
         if (!args?.path) {
             throw new Error('Path is required');
         }
@@ -687,7 +700,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns cache statistics
      */
-    private async handleGetCacheStats(args: any) {
+    private async handleGetCacheStats(args: GetCacheStatsArgs | undefined) {
         const extended = args?.extended === true;
         
         if (extended) {
@@ -719,7 +732,7 @@ export class ToolHandlers {
      * @param args the arguments
      * @returns the search results
      */
-    private async handleSearchVaultStream(args: any) {
+    private async handleSearchVaultStream(args: SearchVaultStreamArgs | undefined) {
         const query = args?.query;
         const glob = args?.glob;
         const regex = args?.regex;
