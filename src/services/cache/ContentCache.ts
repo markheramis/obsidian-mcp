@@ -32,6 +32,8 @@ export interface ContentCacheEntry {
     mtime: number;
     /** Parsed frontmatter (optional, computed lazily or on set) */
     parsedFrontmatter?: CachedFrontmatter;
+    /** Content body without frontmatter (optional, for readNoteWithFrontmatter without re-parse) */
+    bodyContent?: string;
     /** Pre-computed word count */
     wordCount?: number;
     /** Pre-computed line count */
@@ -213,17 +215,19 @@ export class ContentCache {
      * @param frontmatter Parsed frontmatter
      */
     setWithMetadata(
-        filePath: string, 
-        content: string, 
-        mtime: number, 
-        frontmatter: CachedFrontmatter
+        filePath: string,
+        content: string,
+        mtime: number,
+        frontmatter: CachedFrontmatter,
+        bodyContent?: string
     ): void {
         const normalizedPath = this.normalizePath(filePath);
-        
+
         const entry: ContentCacheEntry = {
             content,
             mtime,
             parsedFrontmatter: frontmatter,
+            bodyContent,
             wordCount: this.computeWordCount(content),
             lineCount: this.computeLineCount(content),
             inlineTags: this.extractInlineTags(content),

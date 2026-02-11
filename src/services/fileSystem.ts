@@ -360,19 +360,31 @@ export class FileSystemService {
             hasFrontmatter: parsed.hasFrontmatter,
         };
         
-        this.contentCache.setWithMetadata(notePath, content, mtime, cachedFrontmatter);
-        
+        this.contentCache.setWithMetadata(notePath, content, mtime, cachedFrontmatter, parsed.content);
+
         // Index content for inverted index
         this.invertedIndex?.indexContent(notePath, content);
-        
+
         return content;
     }
 
     /**
-     * Read note with parsed frontmatter
+     * Read note with parsed frontmatter. Uses cached frontmatter and body when available to avoid double parse.
      */
     async readNoteWithFrontmatter(notePath: string): Promise<ParsedFrontmatter & { path: string }> {
         const content = await this.readNote(notePath);
+        const fullPath = path.join(config.vaultPath, notePath);
+        const stats = await fs.stat(fullPath);
+        const entry = this.contentCache.getEntry(notePath, stats.mtimeMs);
+        if (entry?.parsedFrontmatter && entry.bodyContent !== undefined) {
+            return {
+                tags: entry.parsedFrontmatter.tags,
+                data: entry.parsedFrontmatter.data,
+                hasFrontmatter: entry.parsedFrontmatter.hasFrontmatter,
+                content: entry.bodyContent,
+                path: notePath,
+            };
+        }
         const parsed = this.frontmatterParser.parse(content);
         return {
             ...parsed,
