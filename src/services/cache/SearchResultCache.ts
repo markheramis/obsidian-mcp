@@ -102,7 +102,12 @@ export class SearchResultCache {
         if (options.limit !== undefined) parts.push(`l:${options.limit}`);
         if (options.offset !== undefined) parts.push(`o:${options.offset}`);
         if (options.minScore !== undefined) parts.push(`s:${options.minScore}`);
-        if (options.tags) parts.push(`t:${options.tags.join(',')}`);
+        if (options.tags) {
+            const normalized = options.tags
+                .map((t) => String(t).toLowerCase().replace(/^#/, ''))
+                .sort();
+            parts.push(`t:${normalized.join(',')}`);
+        }
         if (options.frontmatter) parts.push(`f:${JSON.stringify(options.frontmatter)}`);
         
         return parts.join('|');
